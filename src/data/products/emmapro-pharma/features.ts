@@ -1,0 +1,25 @@
+import type { ProductFeature } from "@/data/products/types";
+
+export const emmaproPharmaFeatures: ProductFeature[] = [
+  { id: "operations-center", name: "Operations Center", shortDescription: "Operations Center workspace shown in the pharmacy application.", icon: "layout-dashboard", category: "Operations", displayOrder: 0, featured: true },
+  { id: "dispensing", name: "Dispensing", shortDescription: "Support day-to-day pharmacy dispensing workflows.", icon: "pill", category: "Core operations", displayOrder: 1, featured: true },
+  { id: "lan-client-access", name: "Wi-Fi / LAN client access", shortDescription: "Connect licensed pharmacy client PCs over the local Wi-Fi or LAN network.", icon: "network", category: "Licensing", displayOrder: 2, featured: true },
+  { id: "procurement", name: "Procurement", shortDescription: "Organize pharmacy purchasing and procurement activity.", icon: "package-check", category: "Core operations", displayOrder: 3, featured: true },
+  { id: "stock-control", name: "Stock Intelligence", shortDescription: "Update and control pharmacy stock records.", icon: "boxes", category: "Inventory", displayOrder: 4, featured: true },
+  { id: "medicine-governance", name: "Medicine Governance", shortDescription: "Medicine Governance workspace shown in the pharmacy application.", icon: "clipboard-check", category: "Pharmacy operations", displayOrder: 5 },
+  { id: "global-dashboard", name: "Global Dashboard", shortDescription: "Review operational information across connected locations.", icon: "layout-dashboard", category: "Multi-site", displayOrder: 6, featured: true },
+  { id: "multi-site-sync", name: "Sync Multi-Site", shortDescription: "Synchronize information for eligible multi-site deployments.", icon: "network", category: "Multi-site", displayOrder: 7, featured: true },
+  { id: "saved-reports", name: "Save Report", shortDescription: "Save reports for convenient repeat access.", icon: "file-chart-column-increasing", category: "Reporting", displayOrder: 8, featured: true },
+  { id: "scheduled-email-reports", name: "Scheduled email reports", shortDescription: "Schedule reports to be sent by email daily, weekly, or monthly.", icon: "mail", category: "Reporting", displayOrder: 9, featured: true },
+  { id: "analytics-insights", name: "Analytics Insights", shortDescription: "Analytics Insights workspace shown in the pharmacy application.", icon: "chart-no-axes-combined", category: "Reporting", displayOrder: 10 },
+  { id: "audit-trail", name: "Audit trail", shortDescription: "Review recorded audit activity.", icon: "shield-check", category: "Audit", displayOrder: 11, featured: true },
+  { id: "transaction-audit", name: "Transaction audit", shortDescription: "Review audit records for transactions.", icon: "clipboard-check", category: "Audit", displayOrder: 12, featured: true },
+  { id: "email-configuration", name: "Email configuration", shortDescription: "Email configuration capability included in eligible editions.", icon: "mail", category: "Operations", displayOrder: 13 },
+  { id: "data-migration", name: "Data Migration", shortDescription: "Support data migration where included in the edition.", icon: "database", category: "Operations", displayOrder: 14 },
+  { id: "credit-recovery", name: "Credit recovery", shortDescription: "Support credit recovery workflows in eligible editions.", icon: "hand-coins", category: "Finance", displayOrder: 15 },
+  { id: "inventory-declaration", name: "Inventory declaration", shortDescription: "Prepare inventory declarations in the Ultra edition.", icon: "clipboard-list", category: "Inventory", displayOrder: 16 },
+  { id: "insurance", name: "Insurance / Mutuelle", shortDescription: "Insurance and mutual-insurance workspace shown in the Ultra edition.", icon: "shield-check", category: "Insurance", displayOrder: 17 },
+  { id: "compliance-admin", name: "Compliance Admin", shortDescription: "Compliance Admin workspace shown in the pharmacy application.", icon: "shield-alert", category: "Administration", displayOrder: 18 },
+  { id: "system-configuration", name: "System Configuration", shortDescription: "System Configuration workspace shown in the pharmacy application.", icon: "settings", category: "Administration", displayOrder: 19 },
+  { id: "help-documentation", name: "Help Documentation", shortDescription: "Help and documentation workspace shown in the pharmacy application.", icon: "circle-help", category: "Support", displayOrder: 20 },
+];
