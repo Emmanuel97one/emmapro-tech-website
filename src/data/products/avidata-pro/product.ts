@@ -63,11 +63,90 @@ const product: Product = {
         { action: "contact-sales", label: "WhatsApp sales", channel: "whatsapp" },
       ],
       seo: {
-        title: "AVIDATA PRO | Poultry Farm Management Software",
-        description:
-          "Explore AVIDATA PRO poultry farm management software for batches, production tracking, inventory, finance and multi-farm enterprise reporting.",
-        keywords: ["poultry farm management software", "poultry management system", "farm management software", "poultry production tracking"],
-      },
+          title: "Poultry Farm Management Software | AVIDATA PRO",
+          description:
+             "AVIDATA PRO is poultry farm management software for batch and flock management, broiler and layer production, eggs, feed, mortality, vaccination, inventory, finance, reporting and multi-farm operations.",
+          keywords: [
+             // Core poultry management
+            "poultry farm management software",
+            "poultry management software",
+            "poultry management system",
+            "poultry farm software",
+            "poultry farming software",
+            "poultry farm management system",
+            "chicken farm management software",
+            "chicken farm management system",
+            "chicken farming software",
+            "farm management software",
+            "farm management system",
+
+             // Flock and batch management
+            "poultry flock management software",
+            "flock management software",
+            "flock management system",
+            "poultry batch management software",
+            "poultry batch management system",
+            "chicken flock management software",
+
+            // Broiler and layer management
+            "broiler management software",
+            "broiler farm management software",
+            "broiler management system",
+            "layer farm management software",
+            "layer management software",
+            "layer management system",
+
+             // Production and eggs
+            "poultry production management software",
+            "poultry production tracking",
+            "poultry production software",
+            "egg production management software",
+            "egg production tracking software",
+            "egg farm management software",
+            "poultry egg management software",
+
+             // Feed
+            "poultry feed management software",
+            "poultry feed tracking software",
+            "feed inventory management software",
+            "poultry feed inventory software",
+
+             // Health and mortality
+            "poultry mortality tracking software",
+            "poultry mortality management",
+            "chicken mortality tracking",
+            "poultry vaccination management software",
+            "poultry vaccination tracking",
+            "poultry medicine management software",
+            "poultry health management software",
+
+            // Inventory
+            "poultry inventory management software",
+            "poultry inventory software",
+            "farm inventory management software",
+            "farm stock management software",
+
+    // Finance and business
+            "poultry farm accounting software",
+            "poultry farm financial management software",
+            "poultry farm business management software",
+            "poultry farm expense tracking",
+            "poultry farm profit tracking",
+
+            // Reporting and analytics
+            "poultry farm reporting software",
+            "poultry farm analytics software",
+            "poultry performance tracking software",
+            "poultry farm record keeping software",
+            "digital poultry farm records",
+
+             // Enterprise / multi-farm
+            "multi farm management software",
+            "multi farm poultry management software",
+            "multi site poultry management software",
+            "poultry enterprise management software",
+          ],
+        },
     },
   },
 };

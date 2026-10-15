@@ -62,11 +62,81 @@ const product: Product = {
         { action: "contact-sales", label: "WhatsApp PHARMA sales", channel: "whatsapp" },
       ],
       seo: {
-        title: "EMMAPRO PHARMA | Pharmacy Management Software",
-        description:
-          "Explore EMMAPRO PHARMA pharmacy management software for dispensing, procurement, stock control and pharmacy operations, with edition-based reporting and multi-site capabilities.",
-        keywords: ["pharmacy management software", "pharmacy inventory software", "pharmacy management system", "pharmacy stock management"],
-      },
+          title: "Pharmacy Management Software & Inventory System | EMMAPRO PHARMA",
+          description:
+            "EMMAPRO PHARMA is pharmacy management software for dispensing, medicine inventory, stock control, sales, procurement, reporting and multi-site pharmacy operations.",
+          keywords: [
+            // Core pharmacy software
+            "pharmacy management software",
+            "pharmacy management system",
+            "pharmacy software",
+            "pharmacy management solution",
+            "pharmacy business management software",
+            "pharmacy operations software",
+
+            // Pharmacy inventory and stock
+            "pharmacy inventory software",
+            "pharmacy inventory management software",
+            "pharmacy inventory management system",
+            "pharmacy stock management software",
+            "pharmacy stock management system",
+            "pharmacy stock control software",
+            "medicine inventory software",
+            "medicine inventory management system",
+            "medicine stock management software",
+            "drug inventory management software",
+            "drug inventory management system",
+            "pharmaceutical inventory software",
+
+            // Dispensing
+            "pharmacy dispensing software",
+            "medicine dispensing software",
+            "drug dispensing software",
+            "pharmacy prescription management software",
+
+            // POS, sales and billing
+            "pharmacy POS software",
+            "pharmacy point of sale software",
+            "pharmacy sales software",
+            "pharmacy billing software",
+            "pharmacy cashier software",
+            "pharmacy sales management system",
+
+            // Purchasing and procurement
+            "pharmacy procurement software",
+            "pharmacy purchase management software",
+            "pharmacy supplier management software",
+            "medicine procurement software",
+            "medicine purchase management software",
+
+            // Expiry and medicine control
+            "medicine expiry tracking software",
+            "pharmacy expiry management software",
+            "drug expiry tracking software",
+            "pharmacy batch tracking software",
+
+            // Reports and business management
+            "pharmacy reporting software",
+            "pharmacy analytics software",
+            "pharmacy financial management software",
+            "pharmacy accounting software",
+            "pharmacy profit tracking software",
+            "pharmacy business software",
+
+            // Multi-site / enterprise
+            "multi branch pharmacy software",
+            "multi branch pharmacy management system",
+            "multi site pharmacy software",
+            "pharmacy chain management software",
+            "pharmacy ERP software",
+
+            // General related searches
+            "digital pharmacy management system",
+            "pharmacy record management software",
+            "pharmacy automation software",
+            "pharmacy database software",
+          ],
+        },
     },
   },
 };
