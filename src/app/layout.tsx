@@ -133,7 +133,11 @@ export const metadata: Metadata = {
       "max-image-preview": "large",
       "max-snippet": -1,
       "max-video-preview": -1,
+
     },
+  },
+  verification: {
+    google: "FAqHiY63DZLOrQt23sa4q_6uqPRI7EaGgg79Qu50M34",
   },
 };
 
