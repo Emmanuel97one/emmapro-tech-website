@@ -1,128 +1,360 @@
-# EMMAPRO Tech public website
+# EMMAPRO Tech — Official Website
 
-This repository contains the public corporate and marketing website for
-EMMAPRO Tech. It does not contain source code for commercial products.
+### Professional Business Software for Pharmacy, Retail, Inventory & Poultry Farm Management
 
-## Local development and validation
+This repository contains the **official public website of EMMAPRO Tech**, a software development brand focused on building practical business management solutions for real operational environments.
 
-```bash
-npm install
-npm run dev
-npm run lint
-npm run build
-```
+🌐 **Official Website:**  
+https://emmapro-tech-website.pages.dev
 
-The production build exports static files to `out/`, suitable for static
-hosting. There is no database, authentication, customer portal, or application
-backend API. The contact form submits directly to Web3Forms using the public
-client-side access key in `src/config/web3forms.ts`. Web3Forms handles message
-delivery and its own data processing; WhatsApp remains available as an
-alternative contact method.
+> This repository contains the EMMAPRO Tech public corporate and product website.  
+> It does **not** contain the proprietary source code of EMMAPRO Tech commercial software products.
 
-## Project structure
+---
 
-- `src/app/` — App Router pages, dynamic product route, metadata, sitemap, and
-  robots output.
-- `src/components/layout/` — shared header, navigation, and footer.
-- `src/components/ui/` — reusable design-system primitives.
-- `src/components/cards/` — reusable product, feature, module, and commercial
-  information cards.
-- `src/components/content/` — product page sections and gallery.
-- `src/data/products/types.ts` — typed product and localized content schema.
-- `src/data/products/registry.ts` — central list, ordering, and lookup helpers.
-- `src/data/products/<product-id>/product.ts` — product record, positioning,
-  calls to action, ROI labels, and product SEO.
-- `src/data/products/<product-id>/features.ts` and `modules.ts` — product
-  capability and module content.
-- `src/data/products/<product-id>/editions.ts` and `pricing.ts` — edition
-  entitlements, capacity limits, and product-specific commercial pricing.
-- `src/data/products/<product-id>/licensing.ts` and `faq.ts` — customer-facing
-  license guidance and product-specific answers.
-- `src/data/company/` — company identity, contact details, and social links.
-- `src/content/messages/` — shared interface translations.
-- `src/config/` — branding, theme, and navigation settings.
-- `src/lib/metadata.ts` — metadata and software-product structured-data helpers.
-- `src/lib/pricing/` — reusable price calculations shared by pricing and ROI UI.
-- `public/` — brand and product asset directories.
+# 🚀 EMMAPRO Tech Software Products
 
-## Adding a product
+EMMAPRO Tech currently develops software solutions for pharmacy operations, retail businesses, inventory management and poultry farm operations.
 
-1. Create `src/data/products/<product-id>/product.ts`, following the existing
-   product records and the `Product` type. Use a stable unique `id` and
-   lowercase URL-safe `slug`; set a unique `displayOrder`, approved product
-   theme colors, icon, status, and availability.
-2. Add the record to `productRegistry` in
-   `src/data/products/registry.ts`. This registry drives product lists,
-   homepage cards, navigation, contact choices, sitemap entries, and the
-   `/products/<slug>` static route.
-3. Add product assets under `public/products/<slug>/`:
-   - approved product marks, referenced by the record's `logoPath`.
-   - `hero/` — approved product hero artwork.
-   - `screenshots/` — approved application screenshots and thumbnails.
-   Use descriptive filenames, accurate alt text, and paths beginning with
-   `/products/<slug>/`. Do not add stock or fabricated product imagery.
-4. Add only approved information. Set `featured` deliberately; use
-   `status: "archived"` to remove a product from public listings and generated
-   routes while keeping its record available for maintenance.
-5. Run lint and the production build. Check the product list, navigation,
-   contact choices, sitemap, and generated product route.
+## 💊 EMMAPRO PHARMA
 
-## Editing product content
+### Pharmacy Management Software & Inventory System
 
-Each product owns its translated content under `translations`, with commercial
-data split into files in its product directory. Update only that product:
+**EMMAPRO PHARMA** is a professional pharmacy management solution designed to help pharmacies organize and control their daily operational activities.
 
-- `overview` and `importance` describe the product, context, business value,
-  audiences, and use cases.
-- `features` and `modules` have stable IDs and display order. Modules can
-  reference feature IDs and edition IDs.
-- `screenshots` list only real, approved images. Supply a useful `alt` string;
-  optionally provide a smaller `thumbnailPath` so gallery cards never need to
-  load the full-resolution image before a visitor opens its preview.
-- `editions.ts` defines product-specific included/excluded features, modules,
-  limits, availability, and edition descriptions. `pricing.ts` defines prices
-  independently for each billing period and product. Quantity-based prices keep
-  the selected edition's listed price for the first unit; the price of each
-  additional seat or site uses a 47.5% volume discount. That shared marginal
-  discount is derived by linear regression from the supplied reference totals
-  of $500, $899, and $1,025 for one, two, and three units, then scaled to each
-  edition's listed additional-unit price. SHOP seat and PHARMA/AVIDATA site
-  calculations use the same rule; reusable calculations live in
-  `src/lib/pricing/calculate-product-price.ts`.
-- `licensing`, `requirements`, and `faqs` are product-specific. Edition
-  licensing overrides are optional.
-- `ctas` describe product actions and can supply an explicit `href`. Pricing,
-  licensing, requirements, and commercial copy must not be inferred from
-  another product.
+### Major Business Areas
 
-Use empty arrays or objects for details not yet supplied. Do not create sample
-prices, licensing terms, compatibility claims, modules, screenshots, customer
-quotes, or availability promises. System requirements and real application
-screenshots remain omitted until confirmed and supplied.
+- Pharmacy Dispensing & POS
+- Medicine Inventory Management
+- Procurement Management
+- Stock Management
+- Financial Control
+- Analytics & Business Insights
+- User Management
+- Compliance & Audit
+- Business Reporting
+- Backup & Data Protection
+- Multi-Site Management
+- Global Management Dashboard
+- Credit Recovery capabilities
+- Inventory Declaration capabilities
+- Insurance Management capabilities
 
-## Company, contact, and social configuration
+### Editions
 
-Edit `src/data/company/company.ts`, `contact.ts`, and `social.ts` when official
-company information is approved. Unknown contact channels remain `null`; do
-not replace them with invented addresses. Set `NEXT_PUBLIC_SITE_URL` to the
-real canonical site origin before publication. Canonical metadata and absolute
-sitemap URLs remain unset without it.
+- **Pro**
+- **Pro-Plus**
+- **Pro Max**
+- **Ultra**
 
-The Web3Forms endpoint and public access key are centralized in
-`src/config/web3forms.ts`. The access key is intentionally included in the
-client-side website configuration, as Web3Forms public access keys are designed
-for browser submissions.
+Capabilities vary according to the selected edition.
 
-## Languages and themes
+➡️ **EMMAPRO PHARMA Product Page:**  
+https://emmapro-tech-website.pages.dev/products/emmapro-pharma
 
-English is the default supported locale. Product translations live alongside
-each product in `translations`; shared interface strings live in
-`src/content/messages/<locale>.ts`. To add a language, add its typed message
-catalog, add complete product translations (English is the explicit fallback
-for untranslated fields), then expose the locale through the language selector.
-Do not use browser machine translation as the content source.
+---
 
-Theme tokens support light and dark presentation through the `data-theme`
-attribute and system preference. The approved EMMAPRO Tech PNG logo is
-encapsulated by the shared brand component, so the header and footer can be
-updated without changing their layout.
+## 🛒 EMMAPRO SHOP
+
+### POS, Retail & Inventory Management Software
+
+**EMMAPRO SHOP** is designed for retail businesses that need structured control over point-of-sale activities, products, inventory, stock and everyday store operations.
+
+### Major Business Areas
+
+- Point of Sale (POS)
+- Sales Operations
+- Product Management
+- Inventory Management
+- Stock Management
+- Retail Transactions
+- Financial Operations
+- Business Reporting
+- User Management
+- Store Operations
+- Licensed Multi-Seat Deployment
+
+### Editions
+
+- **Pro**
+- **Pro-Plus**
+
+EMMAPRO SHOP uses scalable seat-based licensing so businesses can expand their licensed workstations as their operations grow.
+
+➡️ **EMMAPRO SHOP Product Page:**  
+https://emmapro-tech-website.pages.dev/products/emmapro-shop
+
+---
+
+## 🐔 AVIDATA PRO
+
+### Poultry Farm Management Software
+
+**AVIDATA PRO** is a comprehensive poultry farm management solution designed for poultry businesses ranging from individual farms to larger multi-farm operations.
+
+### Farm & Production Management
+
+- Farm Dashboard
+- Daily Farm Logs
+- Batch Management
+- Batch History
+- Production Tracking
+- Egg Production Tracking
+- Weight Tracking
+- Mortality Tracking
+- Farm Alerts
+
+### Poultry Health & Medicine
+
+- Health Records
+- Vaccination Management
+- Medicine Usage
+- Medicine Inventory
+- Advanced Medicine Management
+- Health & Mortality Reporting
+
+### Feed, Stock & Inventory
+
+- Feed Inventory
+- Medicine Inventory
+- Stock Transactions
+- Low-Stock Alerts
+- Lot Tracking
+- Stock Valuation
+- Inventory Analytics
+- Multi-Location Inventory
+- Cross-Farm Inventory
+- Consolidated Inventory
+
+### Finance & Accounting
+
+- Income Recording
+- Expense Recording
+- Cash Position
+- Profit & Loss Monitoring
+- Accounts Payable
+- Accounts Receivable
+- Budgeting
+- Chart of Accounts
+- Opening Balances
+- Asset Register
+- Asset Depreciation
+- Financial Audit Trail
+- Consolidated Financial Management
+
+### Human Resources & Workforce
+
+- Employee Records
+- Attendance Management
+- HR & Labor Management
+- Payroll Management
+- Multi-Farm Workforce Management
+
+### CRM & Business Partners
+
+- CRM Management
+- Supplier Ledger
+- Customer Ledger
+- Credit Limits
+- Partner Rating
+- Purchase History
+- Sales History
+
+### Maintenance & Asset Management
+
+- Preventive Maintenance
+- Corrective Maintenance
+- Work Orders
+- Maintenance Cost Tracking
+- Asset Management
+- Maintenance Performance Analytics
+
+### Analytics & Reporting
+
+- Farm KPIs
+- Production Analytics
+- Growth Curves
+- Feed Conversion Ratio Analysis
+- Health Timeline
+- Mortality Analytics
+- Performance Benchmarking
+- Financial Reports
+- Production Reports
+- Executive Reports
+- Custom Report Filters
+- Excel Export
+- Scheduled Reports
+
+### Security, Backup & Synchronization
+
+- User Authentication
+- Role Management
+- Permission Management
+- Audit Logs
+- Local Backup & Restore
+- Cloud Backup
+- Cloud Synchronization
+- Synchronization Monitoring
+- Conflict Management
+
+### Multi-Farm & Enterprise Management
+
+- Multiple Farm Profiles
+- Multi-Site Management
+- Multi-Site Synchronization
+- Global Dashboard
+- Cross-Farm KPIs
+- Cross-Farm Alerts
+- Consolidated Inventory
+- Consolidated Finance
+- Consolidated Production
+- Enterprise Reporting
+- Central Management Controls
+
+### Editions
+
+- **Lite** — Core poultry farm operations
+- **Pro** — Advanced operational and management capabilities
+- **Pro Plus** — Enterprise and multi-farm capabilities
+
+➡️ **AVIDATA PRO Product Page:**  
+https://emmapro-tech-website.pages.dev/products/avidata-pro
+
+---
+
+# 🏢 About EMMAPRO Tech
+
+**EMMAPRO Tech** develops software solutions designed around real business and operational requirements.
+
+Our current product portfolio focuses on:
+
+| Product | Software Category |
+| --- | --- |
+| **EMMAPRO PHARMA** | Pharmacy Management Software |
+| **EMMAPRO SHOP** | POS, Retail & Inventory Management Software |
+| **AVIDATA PRO** | Poultry Farm Management Software |
+
+The product architecture is designed to allow additional EMMAPRO Tech solutions to be introduced as the software portfolio grows.
+
+---
+
+# 🧩 Custom Software Solutions
+
+In addition to packaged software products, EMMAPRO Tech can develop software around specific organizational and operational requirements.
+
+Areas may include:
+
+- Business Management Systems
+- Inventory & Stock Systems
+- Internal Operational Systems
+- Business Reporting
+- Management Dashboards
+- Data Management
+- Multi-User Applications
+- Role-Based Business Systems
+- Business Process Automation
+- Industry-Specific Software
+- Integration-Oriented Solutions
+
+---
+
+# 🌐 About This Website
+
+The EMMAPRO Tech website provides public information about:
+
+- EMMAPRO Tech
+- Software Products
+- Product Features
+- Product Modules
+- Product Screenshots
+- Software Editions
+- Pricing Information
+- Licensing Information
+- Business Value
+- ROI Information
+- Product Requirements
+- Frequently Asked Questions
+- Support
+- Contact Information
+
+The website is designed to support additional products without requiring the public website architecture to be rebuilt.
+
+---
+
+# 🛠️ Website Technology
+
+The public EMMAPRO Tech website is built using:
+
+- **Next.js**
+- **React**
+- **TypeScript**
+- **Tailwind CSS**
+- **App Router**
+- **Static Site Generation / Export**
+- **Responsive Web Design**
+- **SEO Metadata**
+- **Structured Data**
+- **XML Sitemap**
+- **Robots Configuration**
+- **Git & GitHub**
+- **Cloudflare Pages**
+
+The website is designed for responsive presentation across smartphones, tablets, laptops and desktop displays.
+
+---
+
+# 🔎 Search & Discoverability
+
+The website includes search-engine-oriented infrastructure such as:
+
+- Product-specific page titles
+- Product-specific meta descriptions
+- Canonical URLs
+- Open Graph metadata
+- Twitter metadata
+- Search engine robots directives
+- XML sitemap generation
+- Organization structured data
+- Website structured data
+- Software application structured data
+- Google Search Console verification
+- Semantic product content
+- Internal product navigation
+
+Public product pages are structured around the actual purpose and capabilities of each EMMAPRO Tech product.
+
+---
+
+# 📁 Website Architecture
+
+The website uses a centralized, product-driven architecture.
+
+```text
+src/
+├── app/
+│   ├── products/
+│   │   └── [slug]/
+│   ├── about/
+│   ├── contact/
+│   ├── privacy/
+│   ├── support/
+│   └── terms/
+│
+├── components/
+│   ├── cards/
+│   ├── content/
+│   ├── layout/
+│   └── ui/
+│
+├── config/
+│
+├── content/
+│   └── messages/
+│
+├── data/
+│   ├── company/
+│   └── products/
+│
+└── lib/
+    ├── metadata.ts
+    └── pricing/
