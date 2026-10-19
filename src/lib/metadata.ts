@@ -15,10 +15,12 @@ export function createPageMetadata(
   description: string,
   path: string,
   image?: string,
+  locale: "en" | "fr" = "en",
 ): Metadata {
-  const canonicalUrl = brand.siteUrl
-    ? new URL(path, brand.siteUrl).toString()
-    : undefined;
+  const canonicalUrl = brand.siteUrl ? new URL(path, brand.siteUrl).toString() : undefined;
+  const englishPath =
+    path === "/fr" ? "/" : path.startsWith("/fr/") ? path.slice(3) : path;
+  const frenchPath = englishPath === "/" ? "/fr" : `/fr${englishPath}`;
 
   const absoluteImage =
     image && brand.siteUrl
@@ -29,9 +31,14 @@ export function createPageMetadata(
     title,
     description,
 
-    ...(canonicalUrl && {
+    ...(brand.siteUrl && {
       alternates: {
-        canonical: canonicalUrl,
+        canonical: new URL(path, brand.siteUrl).toString(),
+        languages: {
+          en: new URL(englishPath, brand.siteUrl).toString(),
+          fr: new URL(frenchPath, brand.siteUrl).toString(),
+          "x-default": new URL(englishPath, brand.siteUrl).toString(),
+        },
       },
     }),
 
@@ -40,6 +47,7 @@ export function createPageMetadata(
       siteName: brand.name,
       title,
       description,
+      locale: locale === "fr" ? "fr_FR" : "en_US",
       ...(canonicalUrl && {
         url: canonicalUrl,
       }),
@@ -105,11 +113,37 @@ export function createProductMetadata(product: Product): Metadata {
   };
 }
 
+export function createFrenchProductMetadata(product: Product): Metadata {
+  const content = getProductTranslation(product, "fr");
+  const metadata = createPageMetadata(
+    content.seo.title,
+    content.seo.description,
+    `/fr/products/${product.slug}`,
+    product.openGraphImagePath,
+    "fr",
+  );
+
+  return {
+    ...metadata,
+    title: {
+      absolute: content.seo.title,
+    },
+    ...(content.seo.keywords?.length
+      ? {
+          keywords: content.seo.keywords,
+        }
+      : {}),
+  };
+}
+
 /**
  * Creates SoftwareApplication structured data for search engines.
  */
-export function createProductJsonLd(product: Product) {
-  const content = getProductTranslation(product);
+export function createProductJsonLd(
+  product: Product,
+  locale: "en" | "fr" = "en",
+) {
+  const content = getProductTranslation(product, locale);
 
   return {
     "@context": "https://schema.org",
@@ -121,7 +155,7 @@ export function createProductJsonLd(product: Product) {
 
     ...(brand.siteUrl && {
       url: new URL(
-        `/products/${product.slug}`,
+        `${locale === "fr" ? "/fr" : ""}/products/${product.slug}`,
         brand.siteUrl,
       ).toString(),
     }),

@@ -249,7 +249,10 @@ export const en = {
     pricingQuote: "Request a quote",
   },
   contactPage: {
-    introduction: "Reach the team by phone or WhatsApp, or contact product sales directly by email.",
+    introduction: "Contact us about a custom web app, desktop app, or software system, or reach out about one of our products.",
+    customSoftware: "Custom software projects",
+    customSoftwareDescription: "Discuss a web application, desktop application, or software system built to your requirements.",
+    productContact: "{product} contact",
     phoneSales: "Phone and WhatsApp sales",
     whatsappCard: "WhatsApp",
     phoneCard: "Phone",

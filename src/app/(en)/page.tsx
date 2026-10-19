@@ -40,10 +40,9 @@ export default function Home() {
               {" "}<span>the work</span> that matters.
             </h1>
             <p className="home-hero__lead">
-              Explore a focused portfolio of business software for pharmacy
-              management, point of sale and retail, and poultry farm
-              management. Each product has its own features, editions,
-              licensing, and pricing information.
+              We build web applications, desktop applications, and software
+              systems to meet client requirements. Explore our own software for
+              pharmacy management, retail operations, and poultry farms too.
             </p>
             <div className="home-hero__actions">
               <Button href="/products">
@@ -55,7 +54,7 @@ export default function Home() {
             </div>
             <div className="home-hero__note">
               <ArrowDownRight size={18} aria-hidden="true" />
-              <span>Three products. Each with its own dedicated page.</span>
+              <span>Custom software services and three featured products.</span>
             </div>
           </div>
           <div className="portfolio-panel">
@@ -117,11 +116,32 @@ export default function Home() {
           />
           <div className="home-intro__content">
             <p>
-              {company.description} Explore each product to review its
-              published capabilities, editions, and commercial information.
+              {company.description} Our team can discuss a software project
+              based on your requirements, as well as questions about our
+              products.
             </p>
             <Link href="/about" className="text-link">
               More about EMMAPRO Tech <ArrowUpRight size={17} aria-hidden="true" />
+            </Link>
+          </div>
+        </Container>
+      </section>
+
+      <section className="content-section">
+        <Container className="split-section">
+          <SectionHeading
+            eyebrow="Custom software services"
+            title="Web apps, desktop apps, and systems built to your requirements."
+          />
+          <div>
+            <p className="prose-lead">
+              Have a project in mind? EMMAPRO Tech builds custom web
+              applications, desktop applications, and software systems based on
+              your needs. Tell us what you want to build and our team can discuss
+              the requirements with you.
+            </p>
+            <Link href="/contact" className="text-link">
+              Discuss a custom software project <ArrowUpRight size={17} aria-hidden="true" />
             </Link>
           </div>
         </Container>

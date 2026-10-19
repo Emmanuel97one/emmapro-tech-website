@@ -1,3 +1,4 @@
+import Link from "next/link";
 import { createPageMetadata } from "@/lib/metadata";
 import { ContentPage } from "@/components/content/content-page";
 import { company } from "@/data/company/company";
@@ -17,22 +18,35 @@ export default function AboutPage() {
   return (
     <ContentPage
       eyebrow="About EMMAPRO Tech"
-      title="Software for specialized business operations."
+      title="Custom software and products for specialized operations."
       description={company.description}
       breadcrumb={[{ label: "Home", href: "/" }, { label: "About" }]}
     >
       <article className="content-note about-company">
         <h2>About EMMAPRO Tech</h2>
         <p>
-          The company’s current portfolio includes pharmacy management, point
-          of sale and retail management, and poultry farm management software.
-          Product capabilities, editions, licensing, and pricing are described
-          on each product page.
+          EMMAPRO Tech builds custom web applications, desktop applications,
+          and software systems based on client requirements. The company also
+          develops its own products for pharmacy management, point of sale and
+          retail management, and poultry farm management. Published product
+          capabilities, editions, licensing, and pricing are described on each
+          product page.
         </p>
         <p>
           A fuller company profile, including verified history and team
           information, will be published when those details are approved.
         </p>
+      </article>
+      <article className="content-note">
+        <h2>Custom software development</h2>
+        <p>
+          If you need a web app, desktop app, or software system built for your
+          requirements, contact EMMAPRO Tech to discuss your project and the
+          functionality you need.
+        </p>
+        <Link href="/contact" className="text-link">
+          Discuss a custom project
+        </Link>
       </article>
       <div>
         <SectionHeading

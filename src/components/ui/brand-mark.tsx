@@ -1,12 +1,18 @@
 import Link from "next/link";
 import Image from "next/image";
 
-export function BrandMark() {
+export function BrandMark({
+  href = "/",
+  ariaLabel = "EMMAPRO Tech home",
+}: {
+  href?: string;
+  ariaLabel?: string;
+} = {}) {
   return (
     <Link
       className="brand-mark"
-      href="/"
-      aria-label="EMMAPRO Tech home"
+      href={href}
+      aria-label={ariaLabel}
     >
       <Image
         className="brand-mark__image"

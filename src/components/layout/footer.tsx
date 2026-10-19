@@ -1,35 +1,52 @@
+"use client";
+
 import Link from "next/link";
+import { usePathname } from "next/navigation";
 import { ArrowUpRight, MessageCircle, Phone } from "lucide-react";
 import { company } from "@/data/company/company";
 import { companyContact, productSalesEmails } from "@/data/company/contact";
 import { getGeneralWhatsAppHref } from "@/data/company/sales-link";
 import { companySocial } from "@/data/company/social";
 import { legalNavigation, primaryNavigation } from "@/config/navigation";
-import { messages } from "@/content/messages";
+import { getMessages } from "@/content/messages";
 import { getProductTranslation, getProducts } from "@/data/products/registry";
+import { getLocaleFromPath, localizePath } from "@/lib/locale";
 import { BrandMark } from "@/components/ui/brand-mark";
 import { Container } from "@/components/ui/container";
 
-const products = getProducts();
 const socialLinks = (["facebook", "youtube", "linkedin"] as const).flatMap((platform) => {
   const href = companySocial[platform];
   return href ? [{ platform, href }] : [];
 });
 
 export function Footer() {
+  const pathname = usePathname() ?? "/";
+  const locale = getLocaleFromPath(pathname);
+  const messages = getMessages(locale);
+  const href = (path: string) => localizePath(path, locale);
+  const products = getProducts();
+  const companyDescription = locale === "fr"
+    ? "EMMAPRO Tech conçoit des applications web, des applications de bureau et des systèmes logiciels sur mesure, ainsi que des produits pour la pharmacie, le commerce et l’aviculture."
+    : company.description;
+
   return (
     <footer className="site-footer">
       <Container>
         <div className="site-footer__top">
           <div className="site-footer__brand">
-            <BrandMark />
-            <p>{company.description}</p>
+            <BrandMark
+              href={href("/")}
+              ariaLabel={
+                locale === "fr" ? "Accueil EMMAPRO Tech" : "EMMAPRO Tech home"
+              }
+            />
+            <p>{companyDescription}</p>
           </div>
           <div className="site-footer__links">
             <div>
-              <h2>Explore</h2>
+              <h2>{locale === "fr" ? "Découvrir" : "Explore"}</h2>
               {primaryNavigation.map((item) => (
-                <Link key={item.href} href={item.href}>
+                <Link key={item.href} href={href(item.href)}>
                   {messages.navigation[item.label]}
                 </Link>
               ))}
@@ -37,8 +54,8 @@ export function Footer() {
             <div>
               <h2>{messages.navigation.products}</h2>
               {products.map((product) => (
-                <Link href={`/products/${product.slug}`} key={product.id}>
-                  {getProductTranslation(product).productName}
+                <Link href={href(`/products/${product.slug}`)} key={product.id}>
+                  {getProductTranslation(product, locale).productName}
                 </Link>
               ))}
             </div>
@@ -46,29 +63,29 @@ export function Footer() {
               <h2>{messages.navigation.pricing}</h2>
               {products.map((product) => (
                 <Link
-                  href={`/products/${product.slug}#pricing`}
+                  href={`${href(`/products/${product.slug}`)}#${locale === "fr" ? "editions" : "pricing"}`}
                   key={`pricing-${product.id}`}
                 >
-                  {getProductTranslation(product).productName}
+                  {getProductTranslation(product, locale).productName}
                 </Link>
               ))}
             </div>
             <div>
-              <h2>Information</h2>
+              <h2>{locale === "fr" ? "Informations" : "Information"}</h2>
               {legalNavigation.map((item) => (
-                <Link key={item.href} href={item.href}>
+                <Link key={item.href} href={href(item.href)}>
                   {messages.navigation[item.label]}
                 </Link>
               ))}
-              <Link href="/contact">
-                Get in touch <ArrowUpRight size={14} aria-hidden="true" />
+              <Link href={href("/contact")}>
+                {locale === "fr" ? "Nous contacter" : "Get in touch"} <ArrowUpRight size={14} aria-hidden="true" />
               </Link>
             </div>
           </div>
           <div className="site-footer__contact">
-            <p className="eyebrow">Have a question?</p>
-            <Link href="/contact" className="site-footer__contact-link">
-              Contact information <ArrowUpRight size={16} aria-hidden="true" />
+            <p className="eyebrow">{locale === "fr" ? "Une question ?" : "Have a question?"}</p>
+            <Link href={href("/contact")} className="site-footer__contact-link">
+              {locale === "fr" ? "Coordonnées" : "Contact information"} <ArrowUpRight size={16} aria-hidden="true" />
             </Link>
             <div className="site-footer__quick-contacts">
               <a href={`tel:${companyContact.phone}`}>
@@ -77,7 +94,7 @@ export function Footer() {
               </a>
               <a href={getGeneralWhatsAppHref()} target="_blank" rel="noopener noreferrer">
                 <MessageCircle size={15} aria-hidden="true" />
-                WhatsApp
+                {companyContact.whatsappDisplay} · WhatsApp
               </a>
               {products
                 .filter((product) => productSalesEmails[product.slug])
@@ -86,14 +103,14 @@ export function Footer() {
                     href={`mailto:${productSalesEmails[product.slug]}`}
                     key={`email-${product.id}`}
                   >
-                    {getProductTranslation(product).productName}
+                    {getProductTranslation(product, locale).productName}
                   </a>
                 ))}
             </div>
             {socialLinks.length > 0 && (
               <nav
                 className="site-footer__social"
-                aria-label="Follow EMMAPRO Tech"
+                aria-label={locale === "fr" ? "Suivre EMMAPRO Tech" : "Follow EMMAPRO Tech"}
               >
                 {socialLinks.map(({ platform, href }) => (
                   <a
@@ -105,7 +122,7 @@ export function Footer() {
                     <SocialIcon platform={platform} />
                     <span>
                       {platform === "youtube"
-                        ? "YouTube channel"
+                        ? locale === "fr" ? "Chaîne YouTube" : "YouTube channel"
                         : platform === "linkedin"
                           ? messages.commercial.linkedin
                           : messages.commercial.facebook}
@@ -118,10 +135,10 @@ export function Footer() {
         </div>
         <div className="site-footer__bottom">
           <p>
-            © {new Date().getFullYear()} {company.copyrightName}. All rights
-            reserved.
+            © {new Date().getFullYear()} {company.copyrightName}.{" "}
+            {locale === "fr" ? "Tous droits réservés." : "All rights reserved."}
           </p>
-          <p>Built with care for the work that matters.</p>
+          <p>{locale === "fr" ? "Conçu avec soin pour les activités qui comptent." : "Built with care for the work that matters."}</p>
         </div>
       </Container>
     </footer>

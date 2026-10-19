@@ -1,6 +1,7 @@
 "use client";
 
 import { useState, type ReactNode } from "react";
+import { usePathname } from "next/navigation";
 import {
   Check,
   Copy,
@@ -12,8 +13,9 @@ import {
 } from "lucide-react";
 import { companyContact } from "@/data/company/contact";
 import { companySocial } from "@/data/company/social";
-import { messages } from "@/content/messages";
+import { getMessages } from "@/content/messages";
 import { getGeneralWhatsAppHref } from "@/data/company/sales-link";
+import { getLocaleFromPath } from "@/lib/locale";
 
 interface ContactProductLink {
   id: string;
@@ -27,49 +29,62 @@ export function ContactInformation({
 }: {
   products: ContactProductLink[];
 }) {
-  const phone = companyContact.phoneDisplay;
-
+  const pathname = usePathname() ?? "/";
+  const locale = getLocaleFromPath(pathname);
+  const messages = getMessages(locale);
   return (
     <section className="contact-information" aria-labelledby="contact-methods-title">
       <h2 id="contact-methods-title">{messages.contactPage.contactMethods}</h2>
       <div className="contact-information__grid">
         <ContactCard icon={<MessageCircle size={20} aria-hidden="true" />} title={messages.contactPage.whatsappCard}>
-          <p className="contact-information__value">{phone}</p>
+          <p className="contact-information__value">{companyContact.whatsappDisplay}</p>
           <div className="contact-information__actions">
             <a href={getGeneralWhatsAppHref()} target="_blank" rel="noopener noreferrer">{messages.contactPage.continueWhatsapp}</a>
-            <CopyButton text={companyContact.whatsapp} />
+            <CopyButton text={companyContact.whatsapp} messages={messages} />
+          </div>
+        </ContactCard>
+        <ContactCard
+          icon={<Mail size={20} aria-hidden="true" />}
+          title={messages.contactPage.customSoftware}
+        >
+          <p>{messages.contactPage.customSoftwareDescription}</p>
+          <div className="contact-information__actions">
+            <a href={getGeneralWhatsAppHref()} target="_blank" rel="noopener noreferrer">
+              {messages.contactPage.continueWhatsapp}
+            </a>
+            <CopyButton text={companyContact.whatsapp} messages={messages} />
           </div>
         </ContactCard>
         <ContactCard icon={<Phone size={20} aria-hidden="true" />} title={messages.contactPage.phoneCard}>
-          <p className="contact-information__value">{phone}</p>
+          <p className="contact-information__value">{companyContact.whatsappDisplay}</p>
           <div className="contact-information__actions">
             <a href={`tel:${companyContact.phone}`}>{messages.contactPage.phoneCard}</a>
-            <CopyButton text={companyContact.phone} />
+            <CopyButton text={companyContact.phone} messages={messages} />
           </div>
         </ContactCard>
         {products.map((product) => (
           <ContactCard
             icon={<Mail size={20} aria-hidden="true" />}
-            title={messages.contactPage.productEmail.replace("{product}", product.name)}
+            title={messages.contactPage.productContact.replace("{product}", product.name)}
             key={product.id}
           >
-            {product.email ? (
-              <>
-                <p className="contact-information__value">{product.email}</p>
-                <div className="contact-information__actions">
-                  <a href={`mailto:${product.email}`}>{messages.contactPage.sendEmail}</a>
-                  <CopyButton text={product.email} />
-                </div>
-              </>
-            ) : (
-              <>
-                <p className="contact-information__value">{phone}</p>
-                <div className="contact-information__actions">
-                  <a href={product.whatsappHref} target="_blank" rel="noopener noreferrer">{messages.contactPage.continueWhatsapp}</a>
-                  <CopyButton text={companyContact.whatsapp} />
-                </div>
-              </>
-            )}
+            <p className="contact-information__value">
+              {product.email ?? companyContact.whatsappDisplay}
+            </p>
+            <div className="contact-information__actions">
+              {product.email && (
+                <a href={`mailto:${product.email}`}>
+                  {messages.contactPage.sendEmail}
+                </a>
+              )}
+              <a href={product.whatsappHref} target="_blank" rel="noopener noreferrer">
+                {messages.contactPage.continueWhatsapp}
+              </a>
+              <CopyButton
+                text={product.email ?? companyContact.whatsapp}
+                messages={messages}
+              />
+            </div>
           </ContactCard>
         ))}
         <ContactCard icon={<Share2 size={20} aria-hidden="true" />} title={messages.contactPage.social}>
@@ -119,7 +134,13 @@ function ContactCard({
   );
 }
 
-function CopyButton({ text }: { text: string }) {
+function CopyButton({
+  text,
+  messages,
+}: {
+  text: string;
+  messages: ReturnType<typeof getMessages>;
+}) {
   const [copied, setCopied] = useState(false);
   const [copyError, setCopyError] = useState(false);
 

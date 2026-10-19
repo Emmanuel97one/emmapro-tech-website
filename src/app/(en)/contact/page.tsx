@@ -10,7 +10,7 @@ import { ContentPage } from "@/components/content/content-page";
 
 export const metadata = createPageMetadata(
   "Contact",
-  "Contact EMMAPRO Tech about its software products.",
+  "Contact EMMAPRO Tech about custom web apps, desktop apps, software systems, or its business software products.",
   "/contact",
 );
 
@@ -47,6 +47,10 @@ export default function ContactPage() {
       breadcrumb={[{ label: "Home", href: "/" }, { label: "Contact" }]}
     >
       <div className="contact-page">
+        <p className="contact-page__intro">
+          Have a custom web application, desktop application, or software system
+          in mind? Contact us to discuss your requirements.
+        </p>
         <ContactInformation products={products} />
         <Suspense
           fallback={

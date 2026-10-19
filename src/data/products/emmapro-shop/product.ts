@@ -4,6 +4,7 @@ import { emmaproShopModules } from "./modules";
 import { emmaproShopPricing } from "./pricing";
 import { emmaproShopLicensing } from "./licensing";
 import { emmaproShopFaqs } from "./faq";
+import { frenchProductTranslations } from "@/content/products/fr";
 
 const product: Product = {
   id: "emmapro-shop",
@@ -17,6 +18,7 @@ const product: Product = {
   displayOrder: 20,
   featured: true,
   translations: {
+    fr: frenchProductTranslations["emmapro-shop"],
     en: {
       productName: "EMMAPRO SHOP",
       shortName: "SHOP",

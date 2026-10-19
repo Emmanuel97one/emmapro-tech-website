@@ -5,8 +5,9 @@ import { usePathname } from "next/navigation";
 import { useState } from "react";
 import { ArrowUpRight, Menu, X } from "lucide-react";
 import { primaryNavigation } from "@/config/navigation";
-import { messages } from "@/content/messages";
+import { getMessages } from "@/content/messages";
 import { getProductTranslation, getProducts } from "@/data/products/registry";
+import { getLocaleFromPath, localizePath } from "@/lib/locale";
 import { BrandMark } from "@/components/ui/brand-mark";
 import { Button } from "@/components/ui/button";
 import { Container } from "@/components/ui/container";
@@ -15,7 +16,12 @@ import { LanguageSelector } from "@/components/ui/language-selector";
 const products = getProducts();
 
 export function Header() {
-  const pathname = usePathname();
+  const pathname = usePathname() ?? "/";
+  const locale = getLocaleFromPath(pathname);
+  const messages = getMessages(locale);
+  const href = (path: string) => localizePath(path, locale);
+  const navigationLabel =
+    locale === "fr" ? "Navigation principale" : "Main navigation";
   const [mobileMenuOpen, setMobileMenuOpen] = useState(false);
 
   return (
@@ -24,31 +30,36 @@ export function Header() {
         {messages.navigation.skipToContent}
       </a>
       <Container className="site-header__inner">
-        <BrandMark />
-        <nav className="desktop-nav" aria-label="Main navigation">
+        <BrandMark
+          href={href("/")}
+          ariaLabel={
+            locale === "fr" ? "Accueil EMMAPRO Tech" : "EMMAPRO Tech home"
+          }
+        />
+        <nav className="desktop-nav" aria-label={navigationLabel}>
           {primaryNavigation.map((item) =>
             item.label === "products" ? (
               <details className="desktop-product-menu" key={item.href}>
                 <summary
                   aria-current={
-                    pathname.startsWith("/products") ? "page" : undefined
+                    pathname.startsWith(href("/products")) ? "page" : undefined
                   }
                 >
                   {messages.navigation.products}
                 </summary>
                 <div className="desktop-product-menu__panel">
-                  <Link href="/products">{messages.navigation.allProducts}</Link>
+                  <Link href={href("/products")}>{messages.navigation.allProducts}</Link>
                   {products.map((product) => (
                     <Link
-                      href={`/products/${product.slug}`}
+                      href={href(`/products/${product.slug}`)}
                       key={product.id}
                       aria-current={
-                        pathname === `/products/${product.slug}`
+                        pathname === href(`/products/${product.slug}`)
                           ? "page"
                           : undefined
                       }
                     >
-                      {getProductTranslation(product).productName}
+                      {getProductTranslation(product, locale).productName}
                     </Link>
                   ))}
                 </div>
@@ -56,10 +67,10 @@ export function Header() {
             ) : (
               <Link
                 key={item.href}
-                href={item.href}
+                href={href(item.href)}
                 aria-current={
-                  pathname === item.href ||
-                  (item.href !== "/" && pathname.startsWith(item.href))
+                  pathname === href(item.href) ||
+                  (item.href !== "/" && pathname.startsWith(href(item.href)))
                     ? "page"
                     : undefined
                 }
@@ -72,8 +83,11 @@ export function Header() {
             <summary>{messages.navigation.pricing}</summary>
             <div className="desktop-product-menu__panel">
               {products.map((product) => (
-                <Link href={`/products/${product.slug}#pricing`} key={product.id}>
-                  {getProductTranslation(product).productName}
+                <Link
+                  href={`${href(`/products/${product.slug}`)}#${locale === "fr" ? "editions" : "pricing"}`}
+                  key={product.id}
+                >
+                  {getProductTranslation(product, locale).productName}
                 </Link>
               ))}
             </div>
@@ -81,7 +95,7 @@ export function Header() {
         </nav>
         <div className="site-header__actions">
           <LanguageSelector />
-          <Button href="/contact" className="header-cta">
+          <Button href={href("/contact")} className="header-cta">
             {messages.navigation.contact} <ArrowUpRight size={16} aria-hidden="true" />
           </Button>
           <button
@@ -108,16 +122,16 @@ export function Header() {
         <nav
           id="mobile-navigation"
           className="mobile-nav"
-          aria-label="Mobile navigation"
+          aria-label={locale === "fr" ? "Navigation mobile" : "Mobile navigation"}
         >
           <Container className="mobile-nav__inner">
             {primaryNavigation.map((item) => (
               <div className="mobile-nav__group" key={item.href}>
                 <Link
-                  href={item.href}
+                  href={href(item.href)}
                   aria-current={
-                    pathname === item.href ||
-                    (item.href !== "/" && pathname.startsWith(item.href))
+                    pathname === href(item.href) ||
+                    (item.href !== "/" && pathname.startsWith(href(item.href)))
                       ? "page"
                       : undefined
                   }
@@ -130,15 +144,15 @@ export function Header() {
                     {products.map((product) => (
                       <Link
                         key={product.id}
-                        href={`/products/${product.slug}`}
+                        href={href(`/products/${product.slug}`)}
                         aria-current={
-                          pathname === `/products/${product.slug}`
+                          pathname === href(`/products/${product.slug}`)
                             ? "page"
                             : undefined
                         }
                         onClick={() => setMobileMenuOpen(false)}
                       >
-                        {getProductTranslation(product).productName}
+                        {getProductTranslation(product, locale).productName}
                       </Link>
                     ))}
                   </div>
@@ -151,17 +165,17 @@ export function Header() {
                 {products.map((product) => (
                   <Link
                     key={product.id}
-                    href={`/products/${product.slug}#pricing`}
+                    href={`${href(`/products/${product.slug}`)}#${locale === "fr" ? "editions" : "pricing"}`}
                     onClick={() => setMobileMenuOpen(false)}
                   >
-                    {getProductTranslation(product).productName}
+                    {getProductTranslation(product, locale).productName}
                   </Link>
                 ))}
               </div>
             </div>
             <Link
               className="mobile-nav__contact"
-              href="/contact"
+              href={href("/contact")}
               onClick={() => setMobileMenuOpen(false)}
             >
               {messages.navigation.contact} <ArrowUpRight size={17} aria-hidden="true" />

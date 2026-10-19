@@ -1056,15 +1056,35 @@ h3 {
   gap: 14px;
 }
 
-.language-selector select {
-  max-width: 104px;
-  min-height: 40px;
-  padding: 0 22px 0 7px;
-  border: 0;
-  background: transparent;
+.language-selector {
+  display: flex;
+  align-items: center;
+  gap: 6px;
+  color: var(--faint);
+  font-size: 12px;
+  font-weight: 700;
+}
+
+.language-selector__option {
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+}
+
+.language-selector a {
   color: var(--muted);
-  font-size: 13px;
-  cursor: pointer;
+  text-decoration: none;
+}
+
+.language-selector a:hover,
+.language-selector a[aria-current="page"] {
+  color: var(--brand);
+}
+
+.language-selector a:focus-visible {
+  border-radius: 3px;
+  outline: 2px solid var(--brand);
+  outline-offset: 3px;
 }
 
 .button {
@@ -2756,8 +2776,7 @@ h3 {
     gap: 3px;
   }
 
-  .language-selector select {
-    max-width: 86px;
+  .language-selector {
     font-size: 12px;
   }
 

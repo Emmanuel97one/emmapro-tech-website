@@ -4,6 +4,7 @@ import { emmaproPharmaModules } from "./modules";
 import { emmaproPharmaPricing } from "./pricing";
 import { emmaproPharmaLicensing } from "./licensing";
 import { emmaproPharmaFaqs } from "./faq";
+import { frenchProductTranslations } from "@/content/products/fr";
 
 const product: Product = {
   id: "emmapro-pharma",
@@ -17,6 +18,7 @@ const product: Product = {
   displayOrder: 10,
   featured: true,
   translations: {
+    fr: frenchProductTranslations["emmapro-pharma"],
     en: {
       productName: "EMMAPRO PHARMA",
       shortName: "PHARMA",

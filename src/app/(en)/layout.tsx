@@ -5,13 +5,13 @@ import { Footer } from "@/components/layout/footer";
 import { Header } from "@/components/layout/header";
 import { Container } from "@/components/ui/container";
 import { metadataBase } from "@/lib/metadata";
-import "./globals.css";
+import "../globals.css";
 
 const siteTitle =
-  `${brand.name} | Pharmacy, Poultry Farm, POS & Retail Management Software`;
+  `${brand.name} | Custom Apps & Business Software`;
 
 const siteDescription =
-  "EMMAPRO Tech provides professional business management software for pharmacies, poultry farms, retail shops, stores, and supermarkets. Explore pharmacy management, poultry farm management, POS, inventory, stock, sales, and business management solutions.";
+  "EMMAPRO Tech builds custom web applications, desktop applications, and software systems to client requirements, and develops pharmacy, poultry farm, and retail management products.";
 
 export const metadata: Metadata = {
   ...(metadataBase && { metadataBase }),

@@ -22,7 +22,19 @@ export default function sitemap(): MetadataRoute.Sitemap {
     .filter((product) => product.status !== "archived")
     .map((product) => `/products/${product.slug}`);
 
-  return [...staticRoutes, ...productRoutes].map((path) => ({
-    url: new URL(path, siteUrl).toString(),
-  }));
+  return [...staticRoutes, ...productRoutes].flatMap((path) => {
+    const englishUrl = new URL(path, siteUrl).toString();
+    const frenchPath = path === "/" ? "/fr" : `/fr${path}`;
+    const frenchUrl = new URL(frenchPath, siteUrl).toString();
+    const languages = {
+      en: englishUrl,
+      fr: frenchUrl,
+      "x-default": englishUrl,
+    };
+
+    return [
+      { url: englishUrl, alternates: { languages } },
+      { url: frenchUrl, alternates: { languages } },
+    ];
+  });
 }

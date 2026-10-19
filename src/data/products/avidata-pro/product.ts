@@ -4,6 +4,7 @@ import { avidataModules } from "./modules";
 import { avidataPricing } from "./pricing";
 import { avidataLicensing } from "./licensing";
 import { avidataFaqs } from "./faq";
+import { frenchProductTranslations } from "@/content/products/fr";
 
 const product: Product = {
   id: "avidata-pro",
@@ -17,6 +18,7 @@ const product: Product = {
   displayOrder: 30,
   featured: true,
   translations: {
+    fr: frenchProductTranslations["avidata-pro"],
     en: {
       productName: "AVIDATA PRO",
       shortName: "AVIDATA",
